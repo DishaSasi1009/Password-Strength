@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+<link rel="stylesheet" href="style.css">    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <h2>Password Strength Indicator</h2>
+        <input type="password" name="pwd" id="pwd" onkeyup="pass()"><br>
+        <div id="part" class="p1"></div><div id="part" class="p2"></div><div id="part" class="p3"></div><br>
+        <div id="hid">Your Password is too weak</div>
+    </div>
+</body>
+<script>
+    function pass(){
+    const ucase = /[A-Z]/;
+    const lcase = /[a-z]/;
+    const no = /[0-9]/;
+    const spl = /[!@#$]/;
+    const hasUppercase = ucase.test(password);
+    const hasLowercase = lcase.test(password);
+    const hasNumber = no.test(password);
+    const hasSpecialChar = spl.test(password);
+
+    var pwd=document.getElementById("pwd").value;
+    var hid=document.getElementById("hid");
+    var p1=document.getElementsByClassName("p1");
+    var p2=document.getElementsByClassName("p2");
+    var p3=document.getElementsByClassName("p3");
+    
+    if(pwd.length<5){
+        document.getElementById("hid").innerHTML='<div id="hid">Your Password is too weak</div>';
+
+    }
+    if (hasUppercase && hasLowercase && hasNumber && hasSpecialChar) {
+        document.getElementById("hid").innerHTML='<div id="hid1">Your Password is strong</div>';
+        document.getElementsByClassName("p1").style.backgroundColor="green";
+        document.getElementsByClassName("p2").style.backgroundColor="green";
+        document.getElementsByClassName("p3").style.backgroundColor="green";
+    } else if ((hasUppercase || hasLowercase) && (hasNumber || hasSpecialChar)) {
+        document.getElementById("hid").innerHTML='<div id="hid2">Your Password is medium</div>';
+        document.getElementsByClassName("p1").style.backgroundColor="gold";
+        document.getElementsByClassName("p2").style.backgroundColor="gold";
+    } else {
+        document.getElementById("hid").innerHTML='<div id="hid">Your Password is too weak</div>';
+        document.getElementsByClassName("p1").style.backgroundColor="red";
+    }
+}
+  
+      
+        
+      
+    
+</script>
+
+</html>
+
